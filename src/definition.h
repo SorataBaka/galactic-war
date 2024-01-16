@@ -20,6 +20,7 @@ typedef struct {
     int health;
     Bindings userBindings;
     Position currentPosition;
+    long int points;
 } Player;
 
 typedef struct {

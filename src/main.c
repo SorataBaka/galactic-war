@@ -11,6 +11,8 @@ int main(){
     Player testPlayer;
     strcpy(testPlayer.username, "sora");
     testPlayer.health = 100;
+    testPlayer.points = 0;
     testPlayer.userBindings = testBindings;
-    testPlayer.currentPosition = startingPosition;   
+    testPlayer.currentPosition = startingPosition;
+    
 }
