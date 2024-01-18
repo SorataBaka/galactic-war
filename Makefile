@@ -2,10 +2,10 @@ FLAGS = -lncursesw
 
 all: glwar
 
-glwar: main.o
+glwar: src/main.o
 	gcc main.o -o glwar -lncursesw
 
-main.o: main.c definition.h
+main.o: src/main.c src/definition.h
 
 .c.o:
 	cc -c $< $(FLAGS)
