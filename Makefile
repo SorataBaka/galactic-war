@@ -11,7 +11,7 @@ main.o: src/main.c src/definition.h
 	cc -c $< $(FLAGS)
 
 clean:
-	rm *.o
+	rm *.o glwar
 
 .SUFFIXES: .c .o
 
