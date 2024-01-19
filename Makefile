@@ -2,17 +2,17 @@ FLAGS = -lncursesw
 
 all: glwar
 
-glwar: src/main.o
-	gcc main.o -o glwar -lncursesw
+glwar: main.o draw.o
+	gcc main.o draw.o -o glwar -lncurses
 
-main.o: src/main.c src/definition.h
+main.o: src/main.c src/definition.h src/draw.h
+	cc -c src/main.c src/definition.h src/draw.h
 
-.c.o:
-	cc -c $< $(FLAGS)
+draw.o: src/draw.c src/draw.h
+	cc -c src/draw.c src/draw.h
 
 clean:
 	rm *.o glwar
 
 .SUFFIXES: .c .o
-
-.PHONY:  all
+.PHONY:  all clean 

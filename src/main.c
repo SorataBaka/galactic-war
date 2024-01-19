@@ -1,11 +1,26 @@
-#include "definition.h"
+
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
 
-void game(Player * playerObject, Meteor * meteorArray) {
-    erase();
+#include "definition.h"
+#include "draw.h"
 
+void game(Player * playerObject, Meteor * meteorArray) {
+    int maxHeight, maxWidth;
+    char key;
+    erase();
+    timeout(-1);
+    getmaxyx(stdscr, maxHeight, maxWidth);
+    while(1){
+        erase();
+	
+        refresh();
+        key = getch();
+        if(key == 'q') break;
+
+    }
+    return;
 }
 
 int main(){

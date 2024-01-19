@@ -1,6 +1,7 @@
 #ifndef DEFINITION_H
 #define DEFINITION_H
 
+
 #define true 1
 #define false 0
 
