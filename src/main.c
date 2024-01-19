@@ -14,16 +14,19 @@ void game(Player * playerObject, Meteor * meteorArray) {
     getmaxyx(stdscr, maxHeight, maxWidth);
     while(1){
         erase();
-	
+	charSprite(maxWidth/2, maxHeight);
         refresh();
         key = getch();
         if(key == 'q') break;
+	if(key == playerObject->userBindings.left) playerObject->
 
     }
     return;
 }
 
 int main(){
+	int maxHeight, maxWidth;
+
     //Initialize player
     Bindings testBindings = {
         'a', 'd', ' '
