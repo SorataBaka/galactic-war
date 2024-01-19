@@ -16,16 +16,18 @@ typedef struct {
     int y;
 } Position;
 
-typedef struct {
-    Position missilePosition;
-} Missile;
+struct Missile {
+    int x;
+    int y;
+    struct Missile * next;
+};
 
 typedef struct {
     char username[20];
     int health;
     Bindings userBindings;
     Position currentPosition;
-    Missile * missileArray;
+    struct Missile * missileArray;
     long int points;
 } Player;
 
