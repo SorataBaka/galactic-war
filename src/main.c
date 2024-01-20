@@ -21,7 +21,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         struct Missile * missilePrint = playerObject->missileArray;
         int length = 0;
         while(missilePrint != NULL){
-            mvaddstr(missilePrint->y, missilePrint->x, "^");
+            missileSprite(missilePrint->x, missilePrint->y);
             length++;
             missilePrint = missilePrint->next;
         }
@@ -96,7 +96,7 @@ int main(){
 
 
     //Write main screen code bottom here.
-
+    
 
     //Begin game.
     game(&testPlayer, meteorArray);

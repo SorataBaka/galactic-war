@@ -15,7 +15,7 @@ util.o: src/util.c src/util.h src/definition.h
 	cc -c src/util.c src/util.h src/definition.h
 
 clean:
-	rm *.o glwar
+	rm *.o src/*.gch glwar
 
 .SUFFIXES: .c .o
 .PHONY:  all clean 

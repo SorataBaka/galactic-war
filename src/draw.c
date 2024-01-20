@@ -8,3 +8,7 @@ void charSprite(int x, int y){
   mvaddstr(y-1, x-5, "##  ##  ##");
   return;
 }
+void missileSprite(int x, int y){
+  mvaddstr(y, x, "^");
+  return;
+}
