@@ -7,22 +7,24 @@
 #include "definition.h"
 #include "draw.h"
 
+
 void game(Player * playerObject, Meteor * meteorArray) {
     int maxHeight, maxWidth;
     char key;
     erase();
-    timeout(50);
+    timeout(100);
     getmaxyx(stdscr, maxHeight, maxWidth);
     while(1){
         erase();
         //For drawing the character sprite itself
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
         struct Missile * missilePrint = playerObject->missileArray;
+        int length = 0;
         while(missilePrint != NULL){
             mvaddstr(missilePrint->y, missilePrint->x, "^");
+            length++;
             missilePrint = missilePrint->next;
         }
-
         //Read key bindings for next movement
         refresh();
 
@@ -43,11 +45,22 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 playerObject->missileArray = newMissile;
             }
         }
-        //Handle missile movement logic
+        //Handle missile movement logic. this is stupid. please fix if found ideas.
         struct Missile * movementPlaceholder = playerObject->missileArray;
         while(movementPlaceholder != NULL){
             movementPlaceholder->y--;
-            //TODO HANDLE WHAT HAPPENS WHEN THE MISSILE GO OUT OF BOUNDS
+            movementPlaceholder = movementPlaceholder->next;
+        }
+        movementPlaceholder = playerObject->missileArray;
+        if(movementPlaceholder != NULL &&  movementPlaceholder->y < 0){
+            free(movementPlaceholder);
+            playerObject->missileArray = NULL;
+        }
+        while(movementPlaceholder != NULL && movementPlaceholder->next != NULL){
+            if(movementPlaceholder->next->y < 0){
+                free(movementPlaceholder->next);
+                movementPlaceholder->next = NULL;
+            }
             movementPlaceholder = movementPlaceholder->next;
         }
     }
