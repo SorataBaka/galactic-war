@@ -5,8 +5,4 @@ void spliceMissile(Player *playerObject, int targetIndex){
         free(playerObject->missileArray);
         playerObject->missileArray = NULL;
     }
-    struct Missile * 
-    while(playerObject->missileArray != NULL){
-    }
-    
 }
