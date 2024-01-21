@@ -5,29 +5,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宇宙戦争</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./index.js"></script>
+    <style>
+        /* ===== Scrollbar CSS ===== */
+        /* ===== Scrollbar CSS ===== */
+        /* Firefox */
+        * {
+            scrollbar-width: none;
+            scrollbar-color: #8f54a0 #ffffff;
+        }
+
+        /* Chrome, Edge, and Safari */
+        *::-webkit-scrollbar {
+            width: 13px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #93c5fd, #fca5a5);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #8f54a0;
+            border-radius: 10px;
+            border: 0px none #ffffff;
+        }
+    </style>
 </head>
-<body class="p-10 min-h-screen flex flex-col align-middle gap-10 bg-gradient-to-b from-blue-300 to-red-300 text-white">
-    <h1 class="text-7xl font-bold " >宇宙戦争</h1>
+<body class="p-10 min-h-screen flex flex-col align-middle gap-12 bg-gradient-to-b from-blue-300 to-red-300 text-black">
+    <h1 class="text-7xl font-bold" >宇宙戦争</h1>
+    <h2 class="text-xl">ソースコード　<a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war">https://github.com/SorataBaka/galactic-war</a></h2>
+    <hr class="border-white">
+    <section class="h-auto flex flex-col align-middle justify-center gap-5">
+        <h2 class="text-4xl font-bold mb-5">概要</h2>
+        <p class="text-2xl tracking-wider leading-loose">宇宙である戦艦は地球を、敵が投げた流星から防ぐというゲームである。このゲームはオリジナルとは言えないと思いますが、アタリ株式会社のスペースインベーダーとアタリ株式会社のブレイクアウトというゲームの合同を作ります。このゲームでは、プレイヤーが戦艦をコントロールして、上野方面から戦艦向きに流星というオブジェクトが飛びます。地球を防ぐために、その流星を崩しなければいけない、というゲームである。</p>
+    </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-4xl font-bold">スクリーンショット</h2>
+        <h2 class="text-4xl font-bold mb-5">スクリーンショット</h2>
         <div class="">
             <img src="./assets/SPACEWAR.png" alt="Game screenshot" class="w-1/2 mx-auto">
         </div>
     </section>
     <hr class=" border-white">
-    <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-2xl font-bold">Installation</h2>
+    <section class="h-auto flex flex-col align-middle justify-center gap-5">
+        <h2 class="text-4xl font-bold mb-5">インストール</h2>
+        <span class="italic text-xl font-thin">ゲームのソースコードはGitHubでホストされています。</span>
+        <span class="italic text-xl font-thin">このガイドは Linux 向けに書かれています。 Windowsの場合は、<a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.zip">ここ</a>からソースコードをダウンロードしてください。</span>
+        <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold">実行ファイルをインストールする</h3>
+            <p class="text-xl">1. <a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war">ここ</a>から実行可能ファイルをダウンロードする</p>
+            <p class="text-xl">2. 次のコマンドで、ファイルを実行する。 </p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> ./glwar</p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold">ソースからビルドする</h3>
+            <p class="text-xl">1. 以下を使用して依存関係をインストールします。 </p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> sudo apt update</p>
+                <p>> sudo apt install build-essential</p>
+                <p>> sudo apt-get install libncurses5-dev libncursesw5-dev</p>
+            </div>
+            <p class="text-xl">2. <a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。</p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.tar.gz</p>
+            </div>
+            <p class="text-xl">3. tar ファイルからソースコードを抽出します。</p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> tar xvzf ./latest.tar.gz</p>
+            </div>
+            <p class="text-xl">4. ソースコードからコンパイルする</p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> cd ./galactic-war-latest</p>
+                <p>> make</p>
+            </div>
+            <p class="text-4xl">5. 実行可能ファイルを実行する。</p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+                <p>> cd ./glwar</p>
+            </div>
+        </div>
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-2xl">How to operate</h2>
+        <h2 class="text-4xl font-bold mb-5">操作方法</h2>
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-2xl">Current development status</h2>
+        <h2 class="text-4xl font-bold mb-5">開発履歴</h2>
+    </section>
+    <hr class=" border-white">
+    <section class="h-auto flex flex-col align-middle justify-center">
+        <h2 class="text-4xl font-bold mb-5">開発計画</h2>
+        <ol class="list-inside list-disc text-xl">
+            <li>✅ あるデータを元にして、プレイヤーの戦艦を表示する方を作る。</li>
+            <li>✅ プレイヤーの入力から、データである立場とか、状態などを変換する方を作る。</li>
+            <li>✅ 移動ができるあと、戦艦がミサイルを投げるするかたを作る。</li>
+            <li>❎ 敵の流星はランダム的に発生する方を作る。時間があれば、プレイヤーが発生したレベルに基づいて、ファイルから読める。</li>
+            <li>❎ ミサイルと流星がぶつけたときに、ロジックを作る。</li>
+            <li>❎ プレイヤーが失敗するときに、流星がさせられた損害というロジックを作る。</li>
+            <li>❎ ホーム画面を作る。</li>
+            <h3 class="text-xl font-bold">オプショナル</h3>
+            <li>❎ リーダーボードをファイルから読めたり、ファイルに書いたりすることをできる。</li>
+            <li>❎ 爆発とか、レーザーとかをつくる。</li>
+        </ol>
     </section>
     <hr class=" border-white">
 </body>
