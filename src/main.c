@@ -18,6 +18,19 @@ void game(Player * playerObject, Meteor * meteorArray) {
         erase();
         //For drawing the character sprite itself
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
+
+        //Print missiles
+        Missile * missilePrint = playerObject->missileArray;
+        int length = 0;
+        while(missilePrint != NULL){
+            missileSprite(missilePrint->x, missilePrint->y);
+            missilePrint = missilePrint->next;
+            length++;
+        }
+        char test[5];
+        sprintf(test, "%d", length);
+        mvaddstr(0, 0, test);
+
         //Read key bindings for next movement
         refresh();
 
@@ -26,7 +39,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         if(key == playerObject->userBindings.left) playerObject->currentPosition.x--;
         if(key == playerObject->userBindings.right) playerObject->currentPosition.x++;
         if(key == playerObject->userBindings.shoot){
-            struct Missile * newMissile = (struct Missile *)malloc(sizeof(struct Missile));
+            Missile * newMissile = (Missile *)malloc(sizeof(Missile));
             newMissile->x = playerObject->currentPosition.x;
             newMissile->y = maxHeight-2;
             //Check if array is empty
@@ -41,8 +54,11 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 playerObject->missileArray = newMissile;
             }
         }
+        //Logic for meteor generation
+
+
         //Handle missile movement logic. this is stupid. please fix if found ideas.
-        struct Missile * movementPlaceholder = playerObject->missileArray;
+        Missile * movementPlaceholder = playerObject->missileArray;
         if(movementPlaceholder == NULL) continue;
         while(movementPlaceholder != NULL){
             movementPlaceholder->y--;
@@ -52,28 +68,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
                     playerObject->missileArray = NULL;
                     movementPlaceholder = NULL;
                     free(movementPlaceholder);
-                } 
-                else if(movementPlaceholder->next == NULL && movementPlaceholder->prev != NULL){
-                    //If it is the last object in the array.
+                } else {
+                    // If it is the last object in the array.
                     movementPlaceholder = movementPlaceholder->prev;
                     free(movementPlaceholder->next);
                     movementPlaceholder->next = NULL;
-                }
-                else if(movementPlaceholder->next != NULL && movementPlaceholder->prev == NULL){
-                    // If it is the first object in the array.
-                    playerObject->missileArray = movementPlaceholder->next;
-                    playerObject->missileArray->prev = NULL;
-                    free(movementPlaceholder);
-                    movementPlaceholder = playerObject->missileArray;
-                    movementPlaceholder = movementPlaceholder->next;
-                } else {
-                    //If it is somewhere in the middle
-                    movementPlaceholder->prev->next = movementPlaceholder->next;
-                    movementPlaceholder->next->prev = movementPlaceholder->prev;
-                    struct Missile * temp = movementPlaceholder->next;
-                    free(movementPlaceholder);
-                    movementPlaceholder = temp;
-                }
+                } 
             } else {
                 movementPlaceholder = movementPlaceholder->next;
             }

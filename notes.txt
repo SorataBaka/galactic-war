@@ -1,13 +1,26 @@
-//DEBUG: COUNT ACTIVE MISSILE
-struct Missile * missilePrint = playerObject->missileArray;
-int length = 0;
-while(missilePrint != NULL){
-    missileSprite(missilePrint->x, missilePrint->y);
-    length++;
-    missilePrint = missilePrint->next;
-}
-char test[5];
-sprintf(test, "%d", length);
-mvaddstr(0, 0, test);
-
-
+if(movementPlaceholder->next == NULL && movementPlaceholder->prev == NULL){
+    //If it is the only object in the array.
+    playerObject->missileArray = NULL;
+    movementPlaceholder = NULL;
+    free(movementPlaceholder);
+} else if(movementPlaceholder->next == NULL && movementPlaceholder->prev != NULL){
+    // If it is the last object in the array.
+    movementPlaceholder = movementPlaceholder->prev;
+    free(movementPlaceholder->next);
+    movementPlaceholder->next = NULL;
+} 
+//else if(movementPlaceholder->next != NULL && movementPlaceholder->prev == NULL){
+    // If it is the first object in the array.
+    // playerObject->missileArray = movementPlaceholder->next;
+    // playerObject->missileArray->prev = NULL;
+    // free(movementPlaceholder);
+    // movementPlaceholder = playerObject->missileArray;
+    // movementPlaceholder = movementPlaceholder->next;
+//} else {
+    //If it is somewhere in the middle
+    // movementPlaceholder->prev->next = movementPlaceholder->next;
+    // movementPlaceholder->next->prev = movementPlaceholder->prev;
+    // Missile * temp = movementPlaceholder->next;
+    // free(movementPlaceholder);
+    // movementPlaceholder = temp;
+//}

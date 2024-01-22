@@ -16,12 +16,20 @@ typedef struct {
     int y;
 } Position;
 
-struct Missile {
+typedef struct Missile {
     int x;
     int y;
     struct Missile * next;
     struct Missile * prev;
-};
+} Missile;
+
+typedef struct Meteor {
+    Position meteorPosition;
+    int point;
+    struct Meteor * next;
+    struct Meteor * prev;
+    
+} Meteor;
 
 typedef struct {
     char username[20];
@@ -32,11 +40,5 @@ typedef struct {
     long int points;
 } Player;
 
-
-typedef struct {
-    Position meteorPosition;
-    int point;
-    int movementCountdown;
-} Meteor;
 
 #endif
