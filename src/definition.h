@@ -24,7 +24,8 @@ typedef struct Missile {
 } Missile;
 
 typedef struct Meteor {
-    Position meteorPosition;
+    int x;
+    int y;
     int point;
     struct Meteor * next;
     struct Meteor * prev;

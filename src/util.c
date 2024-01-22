@@ -1,8 +1,4 @@
 #include "util.h"
-#include "definition.h"
-void spliceMissile(Player *playerObject, int targetIndex){
-    if(playerObject->missileArray != NULL && targetIndex == 0){
-        free(playerObject->missileArray);
-        playerObject->missileArray = NULL;
-    }
+long int diffMillisecond(struct timeval before, struct timeval after){
+    return (long int)(after.tv_sec - after.tv_sec) * 1000.0f + (after.tv_usec - before.tv_usec) / 1000.0f;
 }
