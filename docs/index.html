@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宇宙戦争</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./index.js"></script>
     <style>
@@ -33,13 +34,17 @@
         }
     </style>
 </head>
-<body class="p-10 min-h-screen flex flex-col align-middle gap-12 bg-gradient-to-b from-blue-300 to-red-300 text-black">
-    <h1 class="text-7xl font-bold" >宇宙戦争</h1>
-    <h2 class="text-xl">ソースコード　<a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war">https://github.com/SorataBaka/galactic-war</a></h2>
+
+<body class="p-10 min-h-screen flex flex-col align-middle gap-12 bg-gradient-to-b from-black to-purple-900 text-white">
+    <h1 class="text-7xl font-bold">宇宙戦争</h1>
+    <h2 class="text-xl">ソースコード　<a class="underline text-blue-200"
+            href="https://github.com/SorataBaka/galactic-war">https://github.com/SorataBaka/galactic-war</a></h2>
     <hr class="border-white">
     <section class="h-auto flex flex-col align-middle justify-center gap-5">
         <h2 class="text-4xl font-bold mb-5">概要</h2>
-        <p class="text-2xl tracking-wider leading-loose">宇宙である戦艦は地球を、敵が投げた流星から防ぐというゲームである。このゲームはオリジナルとは言えないと思いますが、アタリ株式会社のスペースインベーダーとアタリ株式会社のブレイクアウトというゲームの合同を作ります。このゲームでは、プレイヤーが戦艦をコントロールして、上野方面から戦艦向きに流星というオブジェクトが飛びます。地球を防ぐために、その流星を崩しなければいけない、というゲームである。</p>
+        <p class="text-2xl tracking-wider leading-loose">
+            宇宙である戦艦は地球を、敵が投げた流星から防ぐというゲームである。このゲームはオリジナルとは言えないと思いますが、アタリ株式会社のスペースインベーダーとアタリ株式会社のブレイクアウトというゲームの合同を作ります。このゲームでは、プレイヤーが戦艦をコントロールして、上野方面から戦艦向きに流星というオブジェクトが飛びます。地球を防ぐために、その流星を崩しなければいけない、というゲームである。
+        </p>
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
@@ -52,38 +57,42 @@
     <section class="h-auto flex flex-col align-middle justify-center gap-5">
         <h2 class="text-4xl font-bold mb-5">インストール</h2>
         <span class="italic text-xl font-thin">ゲームのソースコードはGitHubでホストされています。</span>
-        <span class="italic text-xl font-thin">このガイドは Linux 向けに書かれています。 Windowsの場合は、<a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.zip">ここ</a>からソースコードをダウンロードしてください。</span>
+        <span class="italic text-xl font-thin">このガイドは Linux 向けに書かれています。 Windowsの場合は、<a class="underline text-blue-200"
+                href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.zip">ここ</a>からソースコードをダウンロードしてください。</span>
         <div class="flex flex-col gap-2">
             <h3 class="text-2xl font-bold">実行ファイルをインストールする</h3>
-            <p class="text-xl">1. <a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war">ここ</a>から実行可能ファイルをダウンロードする</p>
+            <p class="text-xl">1. <a class="underline text-blue-200"
+                    href="https://github.com/SorataBaka/galactic-war">ここ</a>から実行可能ファイルをダウンロードする</p>
             <p class="text-xl">2. 次のコマンドで、ファイルを実行する。 </p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> ./glwar</p>
             </div>
         </div>
         <div class="flex flex-col gap-2">
             <h3 class="text-2xl font-bold">ソースからビルドする</h3>
             <p class="text-xl">1. 以下を使用して依存関係をインストールします。 </p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> sudo apt update</p>
                 <p>> sudo apt install build-essential</p>
                 <p>> sudo apt-get install libncurses5-dev libncursesw5-dev</p>
             </div>
-            <p class="text-xl">2. <a class="underline text-blue-700" href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。</p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <p class="text-xl">2. <a class="underline text-blue-200"
+                    href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。
+            </p>
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/latest.tar.gz</p>
             </div>
             <p class="text-xl">3. tar ファイルからソースコードを抽出します。</p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> tar xvzf ./latest.tar.gz</p>
             </div>
             <p class="text-xl">4. ソースコードからコンパイルする</p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> cd ./galactic-war-latest</p>
                 <p>> make</p>
             </div>
             <p class="text-4xl">5. 実行可能ファイルを実行する。</p>
-            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90" >
+            <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
                 <p>> cd ./glwar</p>
             </div>
         </div>
@@ -95,6 +104,21 @@
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
         <h2 class="text-4xl font-bold mb-5">開発履歴</h2>
+        <div class="grid grid-cols-4">
+            <div class="flex flex-col align-middle justify-center m-2 p-5 rounded-xl bg-gray-700 gap-2">
+                <h5 class="text-3xl font-extrabold">v0.0.1</h5>
+                <span class="text-sm italic">2024/01/22</span>
+                <h6 class="text-xl font-bold">リリースノート</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.1">ソースコード</a>
+                <ol class="list-disc list-inside">
+                    <li>最初に動作するプロトタイプ</li>
+                    <li>戦艦移動できる</li>
+                    <li>戦艦がミサイルを発生できる</li>
+                    <li>戦艦がAとDキーで左右の移動ができる</li>
+                </ol>
+            </div>
+
+        </div>
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
@@ -113,5 +137,9 @@
         </ol>
     </section>
     <hr class=" border-white">
+    <footer class="flex flex-col align-middle justify-center text-center text-white text-md">
+        <span>クリスティアン　ハルジュノ<br>3年情報学科 2022</span>
+    </footer>
 </body>
+
 </html>
