@@ -20,6 +20,7 @@ struct Missile {
     int x;
     int y;
     struct Missile * next;
+    struct Missile * prev;
 };
 
 typedef struct {

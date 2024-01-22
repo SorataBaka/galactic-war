@@ -1,0 +1,13 @@
+//DEBUG: COUNT ACTIVE MISSILE
+struct Missile * missilePrint = playerObject->missileArray;
+int length = 0;
+while(missilePrint != NULL){
+    missileSprite(missilePrint->x, missilePrint->y);
+    length++;
+    missilePrint = missilePrint->next;
+}
+char test[5];
+sprintf(test, "%d", length);
+mvaddstr(0, 0, test);
+
+
