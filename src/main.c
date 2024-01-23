@@ -11,6 +11,7 @@
 #include "util.h"
 
 
+
 void game(Player * playerObject, Meteor * meteorArray) {
     int maxHeight, maxWidth;
     char key;
@@ -30,15 +31,19 @@ void game(Player * playerObject, Meteor * meteorArray) {
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
         //Print missiles
         Missile * missilePrint = playerObject->missileArray;
+        int missileLength = 0;
         while(missilePrint != NULL){
             missileSprite(missilePrint->x, missilePrint->y);
             missilePrint = missilePrint->next;
+            missileLength++;
         }
         //Print meteors
         Meteor * meteorPrint = meteorArray;
+        int meteorLength = 0;
         while(meteorPrint != NULL){
             meteorSprite(meteorPrint->x, meteorPrint->y);
             meteorPrint = meteorPrint->next;
+            meteorLength++;
         }
 
         //Read key bindings for next movement
@@ -46,9 +51,9 @@ void game(Player * playerObject, Meteor * meteorArray) {
 
         key = getch();
         if(key == 'q') break;
-        if(key == playerObject->userBindings.left) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
-        if(key == playerObject->userBindings.right) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
-        if(key == playerObject->userBindings.shoot){
+        if(key == playerObject->userBindings.left && playerObject->currentPosition.x > 3) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
+        if(key == playerObject->userBindings.right && playerObject->currentPosition.x < maxWidth-3) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
+        if(key == playerObject->userBindings.shoot && missileLength <= 20){
             Missile * newMissile = (Missile *)malloc(sizeof(Missile));
             newMissile->x = playerObject->currentPosition.x;
             newMissile->y = maxHeight-2;
@@ -69,8 +74,8 @@ void game(Player * playerObject, Meteor * meteorArray) {
         int randomNumber = rand() % 1000;
         if(randomNumber > METEOR_SPAWN_TRESHOLD){
             Meteor * newMeteor = (Meteor *)malloc(sizeof(Meteor));
-            newMeteor->x = rand() % maxWidth;
-            newMeteor->y = 3;
+            newMeteor->x = rand() % ((maxWidth)) + 5;
+            newMeteor->y = 1;
             newMeteor->point = rand()%((20+1)-5) + 5;
             newMeteor->prev = NULL;
             newMeteor->timeSinceLastMove = getEpochMill();
@@ -188,7 +193,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
                     currentMissile->next = NULL;
                 } else if(currentMissile->next != NULL && currentMissile->prev == NULL){
                     //If it is the first element in the array.
-                    playerObject->missileArray = movementPlaceholder->next;
+                    playerObject->missileArray = currentMissile->next;
                     playerObject->missileArray->prev = NULL;
                     free(currentMissile);
                     currentMissile = playerObject->missileArray;
