@@ -1,8 +1,9 @@
 #ifndef UTIL_H
 #define UTIL_H
-#include "sys/time.h"
+#include <sys/time.h>
+#include <stdlib.h>
 
-long int diffMillisecond(struct timeval before, struct timeval after);
+unsigned long long getEpochMill();
 
 
 #endif

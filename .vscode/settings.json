@@ -3,5 +3,8 @@
         "variables": "#79BEFF",
         "functions": "#FFF000",
         "struct": "#A8A8A8"
-     },
+    },
+    "files.associations": {
+        "ncurses.h": "c"
+    },
 }

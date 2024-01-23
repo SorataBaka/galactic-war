@@ -4,13 +4,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
+#include <sys/time.h>
 
 #include "definition.h"
 #include "draw.h"
 #include "util.h"
 
-time_t currentTime;
 
 void game(Player * playerObject, Meteor * meteorArray) {
     int maxHeight, maxWidth;
@@ -39,12 +38,13 @@ void game(Player * playerObject, Meteor * meteorArray) {
 
         key = getch();
         if(key == 'q') break;
-        if(key == playerObject->userBindings.left) playerObject->currentPosition.x--;
-        if(key == playerObject->userBindings.right) playerObject->currentPosition.x++;
+        if(key == playerObject->userBindings.left) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
+        if(key == playerObject->userBindings.right) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
         if(key == playerObject->userBindings.shoot){
             Missile * newMissile = (Missile *)malloc(sizeof(Missile));
             newMissile->x = playerObject->currentPosition.x;
             newMissile->y = maxHeight-2;
+            newMissile->timeSinceLastMove = getEpochMill();
             //Check if array is empty
             if(playerObject->missileArray == NULL){
                 newMissile->next = NULL;
@@ -59,12 +59,13 @@ void game(Player * playerObject, Meteor * meteorArray) {
         }
         //Logic for meteor generation
         int randomNumber = rand() % 1000;
-        if(randomNumber > 980){
+        if(randomNumber > METEOR_SPAWN_TRESHOLD){
             Meteor * newMeteor = (Meteor *)malloc(sizeof(Meteor));
             newMeteor->x = rand() % maxWidth;
             newMeteor->y = 0;
             newMeteor->point = rand()%((20+1)-5) + 5;
             newMeteor->prev = NULL;
+            newMeteor->timeSinceLastMove = getEpochMill();
             if(meteorArray == NULL){
                 newMeteor->next = NULL;
             } else {
@@ -76,7 +77,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
         //Logic for meteor out of bounds NEED TO MAKE THIS SLOWER
         Meteor * meteorMovementPlaceholder = meteorArray;
         while(meteorMovementPlaceholder != NULL){
-            meteorMovementPlaceholder->y++;
+            unsigned long long currentTime = getEpochMill();
+            if(currentTime - meteorMovementPlaceholder->timeSinceLastMove > 500){
+                meteorMovementPlaceholder->y++;
+                meteorMovementPlaceholder->timeSinceLastMove = currentTime;
+            }
+            
             if(meteorMovementPlaceholder->y > maxHeight){
                 if(meteorMovementPlaceholder->next == NULL && meteorMovementPlaceholder->prev == NULL){
                     //If it is the only object in the array.
@@ -96,7 +102,11 @@ void game(Player * playerObject, Meteor * meteorArray) {
         //Logic for missile out of bounds
         Missile * movementPlaceholder = playerObject->missileArray;
         while(movementPlaceholder != NULL){
-            movementPlaceholder->y--;
+            unsigned long long currentTime = getEpochMill();
+            if(currentTime - movementPlaceholder->timeSinceLastMove > 200){
+                movementPlaceholder->y--;
+                movementPlaceholder->timeSinceLastMove = currentTime;
+            }
             if(movementPlaceholder->y < 0){
                 if(movementPlaceholder->next == NULL && movementPlaceholder->prev == NULL){
                     //If it is the only object in the array.
@@ -113,18 +123,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 movementPlaceholder = movementPlaceholder->next;
             }
         }
-        currentTime = time(NULL);
     }
     return;
 }
 
 int main(){
 	int maxHeight, maxWidth;
-
-
-    currentTime = time(NULL);
-    srand(time(NULL));
-
 
     //Begin initializing ncurses
     initscr();

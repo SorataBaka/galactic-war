@@ -5,6 +5,9 @@
 #define true 1
 #define false 0
 
+#define MOVEMENT_STEP 3
+#define METEOR_SPAWN_TRESHOLD 980
+
 typedef struct {
     char left;
     char right;
@@ -19,6 +22,7 @@ typedef struct {
 typedef struct Missile {
     int x;
     int y;
+    unsigned long long timeSinceLastMove;
     struct Missile * next;
     struct Missile * prev;
 } Missile;
@@ -26,6 +30,7 @@ typedef struct Missile {
 typedef struct Meteor {
     int x;
     int y;
+    unsigned long long timeSinceLastMove;
     int point;
     struct Meteor * next;
     struct Meteor * prev;
