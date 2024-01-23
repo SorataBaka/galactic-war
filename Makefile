@@ -3,7 +3,7 @@ FLAGS = -lncursesw
 all: glwar
 
 glwar: main.o draw.o util.o
-	gcc main.o draw.o util.o -o glwar -lncurses
+	gcc main.o draw.o util.o -o glwar -lncurses -lm -g
 	rm *.o src/*.gch
 
 main.o: src/main.c src/definition.h src/draw.h

@@ -22,8 +22,8 @@ void game(Player * playerObject, Meteor * meteorArray) {
         //Draw star background
         starBackground(maxWidth, maxHeight);
         //Draw health
-        char health[16];
-        sprintf(health, "%3d", playerObject->health);
+        char health[100];
+        sprintf(health, "Health: %3d  Points: %ld", playerObject->health, playerObject->points);
         mvaddstr(0, 0, health);
 
         //For drawing the character sprite itself
@@ -131,6 +131,77 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 } 
             } else {
                 movementPlaceholder = movementPlaceholder->next;
+            }
+        }
+        //Logic for missile and meteor collision
+        Missile * currentMissile = playerObject->missileArray;
+        while(currentMissile != NULL){
+            int missileUpdate = 0;
+            Meteor * currentMeteor = meteorArray;
+            while(currentMeteor != NULL){
+                //Get distance using trig
+                double xDelta = abs(currentMeteor->x - currentMissile->x);
+                double yDelta = abs(currentMeteor->y - currentMissile->y);
+                double distance = sqrt(pow(xDelta, 2)+pow(yDelta, 2));
+                if((int)distance <= 5){
+                    playerObject->points = playerObject->points + currentMeteor->point;
+                    missileUpdate = 1;
+                    if(currentMeteor->prev == NULL && currentMeteor->next == NULL){
+                        //When it is the only element in the array.
+                        free(currentMeteor);
+                        currentMeteor = NULL;
+                        meteorArray = NULL;
+                    } else if(currentMeteor->next == NULL && currentMeteor->prev != NULL){
+                        //When it is the last element in the array.
+                        currentMeteor = currentMeteor->prev;
+                        free(currentMeteor->next);
+                        currentMeteor->next = NULL;
+                    } else if(currentMeteor->next != NULL && currentMeteor->prev == NULL){
+                        //When it is the first element in the array.
+                        meteorArray = currentMeteor->next;
+                        meteorArray->prev = NULL;
+                        free(currentMeteor);
+                        currentMeteor = meteorArray;
+                    } else {
+                        //If it is somewhere in the middle of the array.
+                        currentMeteor->prev->next = currentMeteor->next;
+                        currentMeteor->next->prev = currentMeteor->prev;
+                        Meteor * temp = currentMeteor->next;
+                        free(currentMeteor);
+                        currentMeteor = temp;
+                    }
+                } else {
+                    currentMeteor = currentMeteor->next;
+                }
+            }
+            if(missileUpdate){
+                //Remove from array (MISSILE)
+                if(currentMissile->prev == NULL && currentMissile->next == NULL){
+                    //When it is the first element in the array.
+                    free(currentMissile);
+                    currentMissile = NULL;
+                    playerObject->missileArray = NULL;
+                } else if(currentMissile->next == NULL && currentMissile->prev != NULL){
+                    //If it is the last element in the array.
+                    currentMissile = currentMissile->prev;
+                    free(currentMissile->next);
+                    currentMissile->next = NULL;
+                } else if(currentMissile->next != NULL && currentMissile->prev == NULL){
+                    //If it is the first element in the array.
+                    playerObject->missileArray = movementPlaceholder->next;
+                    playerObject->missileArray->prev = NULL;
+                    free(currentMissile);
+                    currentMissile = playerObject->missileArray;
+                } else {
+                    //If it is somewhere in the middle of the array.
+                    currentMissile->prev->next = currentMissile->next;
+                    currentMissile->next->prev = currentMissile->prev;
+                    Missile * temp = currentMissile->next;
+                    free(currentMissile);
+                    currentMissile = temp;
+                }
+            } else {
+                currentMissile = currentMissile->next;
             }
         }
     }
