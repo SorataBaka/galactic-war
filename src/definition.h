@@ -7,6 +7,8 @@
 
 #define MOVEMENT_STEP 3
 #define METEOR_SPAWN_TRESHOLD 980
+#define SCREEN_BOUND_MIN 3
+#define SCREEN_BOUND_MAX 3
 
 typedef struct {
     char left;

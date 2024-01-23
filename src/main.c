@@ -15,10 +15,17 @@ void game(Player * playerObject, Meteor * meteorArray) {
     int maxHeight, maxWidth;
     char key;
     erase();
-    timeout(100);
+    timeout(200);
     getmaxyx(stdscr, maxHeight, maxWidth);
     while(1){
         erase();
+        //Draw star background
+        starBackground(maxWidth, maxHeight);
+        //Draw health
+        char health[16];
+        sprintf(health, "%3d", playerObject->health);
+        mvaddstr(0, 0, health);
+
         //For drawing the character sprite itself
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
         //Print missiles
@@ -27,6 +34,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
             missileSprite(missilePrint->x, missilePrint->y);
             missilePrint = missilePrint->next;
         }
+        //Print meteors
         Meteor * meteorPrint = meteorArray;
         while(meteorPrint != NULL){
             meteorSprite(meteorPrint->x, meteorPrint->y);
@@ -62,7 +70,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         if(randomNumber > METEOR_SPAWN_TRESHOLD){
             Meteor * newMeteor = (Meteor *)malloc(sizeof(Meteor));
             newMeteor->x = rand() % maxWidth;
-            newMeteor->y = 0;
+            newMeteor->y = 3;
             newMeteor->point = rand()%((20+1)-5) + 5;
             newMeteor->prev = NULL;
             newMeteor->timeSinceLastMove = getEpochMill();
@@ -74,7 +82,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
             }
             meteorArray = newMeteor;
         }
-        //Logic for meteor out of bounds NEED TO MAKE THIS SLOWER
+        //Logic for meteor out of bounds
         Meteor * meteorMovementPlaceholder = meteorArray;
         while(meteorMovementPlaceholder != NULL){
             unsigned long long currentTime = getEpochMill();
@@ -83,7 +91,9 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 meteorMovementPlaceholder->timeSinceLastMove = currentTime;
             }
             
-            if(meteorMovementPlaceholder->y > maxHeight){
+            if(meteorMovementPlaceholder->y > maxHeight - SCREEN_BOUND_MAX){
+                playerObject->health = playerObject->health - 10;
+                if(playerObject->health <= 0) goto DONE;
                 if(meteorMovementPlaceholder->next == NULL && meteorMovementPlaceholder->prev == NULL){
                     //If it is the only object in the array.
                     meteorArray = NULL;
@@ -103,11 +113,11 @@ void game(Player * playerObject, Meteor * meteorArray) {
         Missile * movementPlaceholder = playerObject->missileArray;
         while(movementPlaceholder != NULL){
             unsigned long long currentTime = getEpochMill();
-            if(currentTime - movementPlaceholder->timeSinceLastMove > 200){
+            if(currentTime - movementPlaceholder->timeSinceLastMove > 100){
                 movementPlaceholder->y--;
                 movementPlaceholder->timeSinceLastMove = currentTime;
             }
-            if(movementPlaceholder->y < 0){
+            if(movementPlaceholder->y < SCREEN_BOUND_MIN){
                 if(movementPlaceholder->next == NULL && movementPlaceholder->prev == NULL){
                     //If it is the only object in the array.
                     playerObject->missileArray = NULL;
@@ -124,6 +134,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
             }
         }
     }
+DONE:
     return;
 }
 
