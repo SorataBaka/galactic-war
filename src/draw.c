@@ -26,3 +26,22 @@ void starBackground(int maxWidth, int maxHeight){
   }
   return;
 }
+void keyBindings(int maxWidth, int maxHeight, Player * playerObject){
+  int yCenter = maxHeight/2;
+  int xCenter = maxWidth/2;
+  char leftBindingText[20];
+  char rightBindingText[20];
+  char fireBindingText[20];
+  sprintf(leftBindingText, "[%c] move left", playerObject->userBindings.left);
+  sprintf(rightBindingText, "[%c] move right", playerObject->userBindings.right);
+  sprintf(fireBindingText, "[%c] fire missile", playerObject->userBindings.shoot);
+
+  mvaddstr(yCenter-1, xCenter-10, leftBindingText);
+  mvaddstr(yCenter, xCenter-10, rightBindingText);
+  mvaddstr(yCenter+1, xCenter-10, fireBindingText);
+  mvaddstr(yCenter+4, xCenter-13, "Press any key to continue");
+
+  timeout(-1);
+  getch();
+  return;
+}

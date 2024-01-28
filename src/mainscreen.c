@@ -7,6 +7,10 @@ void mainScreen(Player * playerObject, Meteor * meteorArray, int maxHeight, int 
     int currentChoice = 0;
     int yCenter = maxHeight/2 + verticalOffset;
     int xCenter = maxWidth/2 + horizontalOffset;
+
+    //Make the prompt to input player name here.
+
+
     while(true){
         erase();
         //Display the main title
@@ -27,6 +31,7 @@ void mainScreen(Player * playerObject, Meteor * meteorArray, int maxHeight, int 
             case(1):
                 game(playerObject, meteorArray);
                 endScreen(maxWidth, maxHeight, playerObject);
+                //Make function to write name to leaderboard here
                 break;
             case(2):
                 break;

@@ -7,7 +7,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
 
 
 
-
+    keyBindings(maxWidth, maxHeight, playerObject);
     timeout(200);
     while(1){
         erase();
