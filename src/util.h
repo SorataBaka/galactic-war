@@ -4,6 +4,4 @@
 #include <stdlib.h>
 
 unsigned long long getEpochMill();
-
-
 #endif

@@ -18,7 +18,6 @@ void meteorSprite(int x, int y){
   mvaddstr(y+2, x-2, " ****");
   return;
 }
-
 void starBackground(int maxWidth, int maxHeight){
   for (int i = 0; i < 5; ++i) {
     int x = rand() % maxWidth;

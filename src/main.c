@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <math.h>
-#include <sys/time.h>
 
 #include "definition.h"
 #include "game.h"
 #include "endscreen.h"
+#include "mainscreen.h"
 
 int main(){
 	int maxHeight, maxWidth;
@@ -17,8 +16,6 @@ int main(){
     initscr();
     noecho();
     cbreak();
-    curs_set(0);
-    timeout(-1); // For initializion purposes, set timeout to no wait;
     getmaxyx(stdscr, maxHeight, maxWidth);
 
     //Initialize player
@@ -42,8 +39,7 @@ int main(){
     
 
     //Begin game.
-    game(&player, meteorArray);
-    endScreen(maxWidth, maxHeight, &player);
+    mainScreen(&player, meteorArray ,  maxHeight, maxWidth);
 
     //Cleanup
     endwin();

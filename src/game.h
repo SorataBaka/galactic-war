@@ -4,6 +4,7 @@
 #include "draw.h"
 #include "util.h"
 #include <math.h>
+#include <stdlib.h>
 
 void game(Player * playerObject, Meteor * meteorArray);
 

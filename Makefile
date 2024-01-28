@@ -2,9 +2,8 @@ FLAGS = -lncursesw
 
 all: glwar
 
-glwar: main.o draw.o util.o game.o endscreen.o
-	gcc main.o draw.o util.o game.o endscreen.o -o glwar -lncurses -lm -g
-	rm *.o src/*.gch
+glwar: main.o draw.o util.o game.o endscreen.o mainscreen.o
+	gcc main.o draw.o util.o game.o endscreen.o mainscreen.o -o glwar -lncurses -lm -g
 
 main.o: src/main.c src/definition.h src/draw.h
 	cc -c src/main.c src/definition.h src/draw.h
@@ -20,9 +19,11 @@ util.o: src/util.c src/util.h
 
 endscreen.o: src/endscreen.c src/endscreen.h
 	cc -c src/endscreen.c src/endscreen.h
+
+mainscreen.o: src/mainscreen.c src/mainscreen.h
+	cc -c src/mainscreen.c src/mainscreen.h
 	
 clean:
 	rm *.o src/*.gch glwar
-
 .SUFFIXES: .c .o
 .PHONY:  all clean 

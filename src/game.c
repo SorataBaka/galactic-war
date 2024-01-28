@@ -3,8 +3,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
     int maxHeight, maxWidth;
     char key;
     erase();
-    timeout(200);
     getmaxyx(stdscr, maxHeight, maxWidth);
+
+
+
+
+    timeout(200);
     while(1){
         erase();
         //Draw star background
