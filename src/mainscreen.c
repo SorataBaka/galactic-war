@@ -37,6 +37,7 @@ void mainScreen(Player * playerObject, Meteor * meteorArray, int maxHeight, int 
                 writeLeaderboard(playerObject);
                 break;
             case(2):
+                displayLeaderboard(maxWidth, maxHeight);
                 break;
             case(3):
                 return;

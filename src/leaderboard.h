@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ncurses.h>
 
 typedef struct Entry {
     char username[20];
@@ -11,6 +12,6 @@ typedef struct Entry {
 } Entry;
 
 void writeLeaderboard(Player * playerObject);
-void displayLeaderboard();
+void displayLeaderboard(int maxWidth, int maxHeight);
 
 #endif

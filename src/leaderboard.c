@@ -37,3 +37,34 @@ void writeLeaderboard(Player * playerObject){
     fclose(leaderboardFile);
     return;
 }
+void displayLeaderboard(int maxWidth, int maxHeight){
+    FILE * leaderboardFile = fopen("./leaderboard.txt", "r");
+    int yCenter = maxHeight/2;
+    int xCenter = maxWidth/2;
+    if(leaderboardFile == NULL){
+        mvaddstr(yCenter, xCenter-12, "No leaderboard to show.");
+        mvaddstr(yCenter, xCenter-13, "Press any key to continue.");
+        getch();
+        return;
+    }
+    Entry * leaderboard = (Entry * )malloc(sizeof(Entry) * 11);
+    int score;
+    char username[20];
+    int index = 0;
+    while(fscanf(leaderboardFile, "%d|%s", &score, username) == 2){
+        leaderboard[index].score = score;
+        strcpy(leaderboard[index++].username, username);
+    }
+    yCenter = yCenter - 5;
+    erase();
+    mvaddstr(yCenter-2, xCenter-6, "LEADERBOARD");
+    timeout(-1);
+    for(int i = 0; i < index; i++){
+        char entryPrint[30];
+        sprintf(entryPrint, "%2d. %5d %s", i+1, leaderboard[i].score, leaderboard[i].username);
+        mvaddstr(yCenter+i, xCenter-10, entryPrint);
+    }
+    mvaddstr(yCenter+14, xCenter-14, "Press any key to continue.");
+    getch();
+    return;
+}
