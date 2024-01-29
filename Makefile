@@ -27,8 +27,14 @@ leaderboard.o: src/leaderboard.c src/leaderboard.h
 	cc -c src/leaderboard.c src/leaderboard.h
 	
 clean:
-	rm *.o src/*.gch
+	-rm *.o src/*.gch
+
+distclean:	clean
+	-rm glwar
+
+dist: distclean
+	(tar --exclude ./.git -zcvf glwar.tgz . )
 
 
 .SUFFIXES: .c .o
-.PHONY:  all clean 
+.PHONY:  all clean distclean dist

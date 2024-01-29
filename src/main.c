@@ -26,7 +26,6 @@ int main(){
     Player player;
 
     //Input username promt
-    strcpy(player.username, "sora");
     player.userBindings = defaultBindings;
     player.missileArray = NULL;
     //Initialize meteor array

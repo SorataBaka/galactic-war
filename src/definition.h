@@ -6,7 +6,7 @@
 #define false 0
 
 #define MOVEMENT_STEP 3
-#define METEOR_SPAWN_TRESHOLD 900
+#define METEOR_SPAWN_TRESHOLD 920
 #define SCREEN_BOUND_MIN 3
 #define SCREEN_BOUND_MAX 3
 
