@@ -35,6 +35,7 @@ void mainScreen(Player * playerObject, Meteor * meteorArray, int maxHeight, int 
                 endScreen(maxWidth, maxHeight, playerObject);
                 //Make function to write name to leaderboard here
                 writeLeaderboard(playerObject);
+                displayLeaderboard(maxWidth, maxHeight);
                 break;
             case(2):
                 displayLeaderboard(maxWidth, maxHeight);
