@@ -3,6 +3,7 @@
 #include "game.h"
 #include "endscreen.h"
 #include "definition.h"
+#include "leaderboard.h"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>

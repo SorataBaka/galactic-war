@@ -24,13 +24,11 @@ int main(){
     };
     Position startingPosition = {maxWidth/2, maxHeight};
     Player player;
+
+    //Input username promt
     strcpy(player.username, "sora");
-    player.health = 100;
-    player.points = 0;
     player.userBindings = defaultBindings;
-    player.currentPosition = startingPosition;
     player.missileArray = NULL;
-    
     //Initialize meteor array
     Meteor * meteorArray = NULL;
 

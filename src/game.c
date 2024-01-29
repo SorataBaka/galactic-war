@@ -5,6 +5,22 @@ void game(Player * playerObject, Meteor * meteorArray) {
     erase();
     getmaxyx(stdscr, maxHeight, maxWidth);
 
+    Position startingPosition = {maxWidth/2, maxHeight};
+    playerObject->health = 100;
+    playerObject->points = 0;
+    playerObject->currentPosition = startingPosition;
+    //Reset all arrays if its filled with something;
+    while(playerObject->missileArray != NULL){
+        Missile * temp = playerObject->missileArray;
+        playerObject->missileArray = playerObject->missileArray->next;
+        free(temp);
+    }
+    while(meteorArray != NULL){
+        Meteor * temp = meteorArray;
+        meteorArray = meteorArray->next;
+        free(temp);
+    }
+
 
 
     keyBindings(maxWidth, maxHeight, playerObject);
