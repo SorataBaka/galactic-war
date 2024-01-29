@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宇宙戦争</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./index.js"></script>
+    <link rel="stylesheet" href="index.css">
     <style>
         /* ===== Scrollbar CSS ===== */
         /* ===== Scrollbar CSS ===== */
@@ -135,9 +134,20 @@
                 <ol class="list-disc list-inside">
                     <li>メインスクリーンとロゴを表示できる。</li>
                     <li>ゲームが始まる前に案内スクリーンをつくった。</li>
-                    <li>ゲームが修了の時、スコアを表示させる。</li>
+                    <li>ゲームが修了の時、スコアを表示できる。</li>
                     <li>バックグラウンドに星をランダム的に表示できる。</li>
                     <li>流星とミサイルがぶつけた時に、ゲームがエラーの問題が直しました。</li>
+                </ol>
+            </div>
+            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
+                <h5 class="text-3xl font-extrabold">v0.0.4</h5>
+                <span class="text-sm italic">2024/01/29</span>
+                <h6 class="text-xl font-bold">リリースノート</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.4">ソースコード</a>
+                <ol class="list-disc list-inside">
+                    <li>リーダーボードを表示できる。</li>
+                    <li>ゲームが終わったら、名前を入力出来て、リーダーボードに印刷する。</li>
+                    <li>流星のランダム的に発生パラメータを変更させた。</li>
                 </ol>
             </div>
         </div>
@@ -156,7 +166,7 @@
             <li>✅ ホーム画面を作る。</li>
             <li>❎ 決定を変更画面を作る。</li>
             <h3 class="text-xl font-bold">オプショナル</h3>
-            <li>❎ リーダーボードをファイルから読めたり、ファイルに書いたりすることをできる。</li>
+            <li>✅ リーダーボードをファイルから読んだり、ファイルに書いたりすることをできる。</li>
             <li>❎ 爆発とか、レーザーとかをつくる。</li>
         </ol>
     </section>
