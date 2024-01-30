@@ -24,16 +24,11 @@ int main(){
     };
     Position startingPosition = {maxWidth/2, maxHeight};
     Player player;
-
     //Input username promt
     player.userBindings = defaultBindings;
     player.missileArray = NULL;
     //Initialize meteor array
     Meteor * meteorArray = NULL;
-
-
-    //Write main screen code bottom here.
-    
 
     //Begin game.
     mainScreen(&player, meteorArray ,  maxHeight, maxWidth);

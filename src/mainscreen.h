@@ -4,8 +4,8 @@
 #include "endscreen.h"
 #include "definition.h"
 #include "leaderboard.h"
+#include "settings.h"
 #include <ncurses.h>
-#include <stdlib.h>
-#include <string.h>
+#include "draw.h"
 void mainScreen(Player * playerObject, Meteor * meteorArray,  int maxHeight, int maxWidth);
 #endif

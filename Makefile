@@ -2,8 +2,8 @@ FLAGS = -lncursesw
 
 all: glwar
 
-glwar: main.o draw.o util.o game.o endscreen.o mainscreen.o leaderboard.o
-	gcc main.o draw.o util.o game.o endscreen.o mainscreen.o leaderboard.o -o glwar -lncurses -lm -g
+glwar: main.o draw.o util.o game.o endscreen.o mainscreen.o leaderboard.o settings.o
+	gcc main.o draw.o util.o game.o endscreen.o mainscreen.o leaderboard.o settings.o -o glwar -lncurses -lm -g
 
 main.o: src/main.c src/definition.h src/draw.h
 	cc -c src/main.c src/definition.h src/draw.h
@@ -25,6 +25,9 @@ mainscreen.o: src/mainscreen.c src/mainscreen.h
 
 leaderboard.o: src/leaderboard.c src/leaderboard.h
 	cc -c src/leaderboard.c src/leaderboard.h
+
+settings.o: src/settings.c src/settings.h
+	cc -c src/settings.c src/settings.h
 	
 clean:
 	-rm *.o src/*.gch
