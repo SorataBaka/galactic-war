@@ -5,7 +5,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
     erase();
     getmaxyx(stdscr, maxHeight, maxWidth);
 
+    int laserActive = 0;
+    unsigned long long timeSinceLastLaser = 0;
+
+    
     Position startingPosition = {maxWidth/2, maxHeight};
+    playerObject->streak = 0;
     playerObject->health = 100;
     playerObject->points = 0;
     playerObject->currentPosition = startingPosition;
@@ -24,8 +29,8 @@ void game(Player * playerObject, Meteor * meteorArray) {
 
 
     keyBindings(maxWidth, maxHeight, playerObject);
-    timeout(200);
     while(1){
+        timeout(200);
         erase();
         //Draw star background
         starBackground(maxWidth, maxHeight);
@@ -46,12 +51,16 @@ void game(Player * playerObject, Meteor * meteorArray) {
             meteorPrint = meteorPrint->next;
             meteorLength++;
         }
+        //Draw laser if active
 
+        if(laserActive) laserAnimation(playerObject->currentPosition.x, maxHeight);
         //For drawing the character sprite itself
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
 
         //Draw health and other informations
-        mvprintw(0, 0, "Health: %3d     Points: %ld    Missiles: %d/15", playerObject->health, playerObject->points, 15-missileLength);
+        mvprintw(0, 0, "Health: %3d\nPoints: %ld\nMissiles: %d/12\nStreak: %3d", playerObject->health, playerObject->points, 12-missileLength, playerObject->streak);
+        mvprintw(maxHeight-2, maxWidth-30, "[%c] LASER : %s", playerObject->userBindings.laser,playerObject->streak >= 20 ? "READY": "NOT READY");
+        mvprintw(maxHeight-3, maxWidth-30, "[%c] BOMB  : %s", playerObject->userBindings.bomb ,playerObject->streak >=30 ? "READY" : "NOT READY");
 
         refresh();
 
@@ -60,7 +69,22 @@ void game(Player * playerObject, Meteor * meteorArray) {
         if(key == 'q') break;
         if(key == playerObject->userBindings.left && playerObject->currentPosition.x > 5) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
         if(key == playerObject->userBindings.right && playerObject->currentPosition.x < maxWidth-5) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
-        if(key == playerObject->userBindings.shoot && missileLength < 15){
+        if(key == playerObject->userBindings.laser && laserActive == false && playerObject->streak >= 30){
+            laserActive = true;
+            playerObject->streak = 0;
+            timeSinceLastLaser = getEpochMill();
+        }
+        if(key == playerObject->userBindings.bomb && playerObject->streak >= 50){
+            playerObject->streak = 0;        
+            while(meteorArray != NULL){
+                playerObject->points = playerObject->points + meteorArray->point;
+                Meteor * temp = meteorArray;
+                meteorArray = meteorArray->next;
+                free(temp);
+            }
+            continue;
+        }
+        if(key == playerObject->userBindings.shoot && missileLength < MAX_ACTIVE_MISSILE){
             Missile * newMissile = (Missile *)malloc(sizeof(Missile));
             newMissile->x = playerObject->currentPosition.x;
             newMissile->y = maxHeight-2;
@@ -77,12 +101,54 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 playerObject->missileArray = newMissile;
             }
         }
+        if(getEpochMill() - timeSinceLastLaser >= 3000 && laserActive == true){
+            timeSinceLastLaser = 0;
+            laserActive = false;
+        }
+        //Logic for laser and meteor logic
+        if(laserActive == true){
+            Meteor * currentMeteor = meteorArray;
+            while(currentMeteor != NULL){
+                //Get distance using trig
+                if(abs(currentMeteor->x - playerObject->currentPosition.x) <= 4){
+                    playerObject->points = playerObject->points + currentMeteor->point;
+                    if(currentMeteor->prev == NULL && currentMeteor->next == NULL){
+                        //When it is the only element in the array.
+                        free(currentMeteor);
+                        currentMeteor = NULL;
+                        meteorArray = NULL;
+                    } else if(currentMeteor->next == NULL && currentMeteor->prev != NULL){
+                        //When it is the last element in the array.
+                        currentMeteor = currentMeteor->prev;
+                        free(currentMeteor->next);
+                        currentMeteor->next = NULL;
+                    } else if(currentMeteor->next != NULL && currentMeteor->prev == NULL){
+                        //When it is the first element in the array.
+                        meteorArray = currentMeteor->next;
+                        meteorArray->prev = NULL;
+                        free(currentMeteor);
+                        currentMeteor = meteorArray;
+                    } else {
+                        //If it is somewhere in the middle of the array.
+                        currentMeteor->prev->next = currentMeteor->next;
+                        currentMeteor->next->prev = currentMeteor->prev;
+                        Meteor * temp = currentMeteor->next;
+                        free(currentMeteor);
+                        currentMeteor = temp;
+                    }
+                } else {
+                    currentMeteor = currentMeteor->next;
+                }
+            }
+        }
+
+
         //Logic for meteor generation
         int randomNumber = rand() % 1000;
         if(randomNumber > METEOR_SPAWN_TRESHOLD){
             Meteor * newMeteor = (Meteor *)malloc(sizeof(Meteor));
             newMeteor->x = (rand() % ((maxWidth-20+1))) + 20;
-            newMeteor->y = 1;
+            newMeteor->y = 0;
             newMeteor->point = rand()%((20+1)-5) + 5;
             newMeteor->prev = NULL;
             newMeteor->timeSinceLastMove = getEpochMill();
@@ -105,6 +171,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
             
             if(meteorMovementPlaceholder->y > maxHeight - SCREEN_BOUND_MAX){
                 playerObject->health = playerObject->health - 10;
+                playerObject->streak = 0;
                 if(playerObject->health <= 0) goto DONE;
                 if(meteorMovementPlaceholder->next == NULL && meteorMovementPlaceholder->prev == NULL){
                     //If it is the only object in the array.
@@ -125,7 +192,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         Missile * movementPlaceholder = playerObject->missileArray;
         while(movementPlaceholder != NULL){
             unsigned long long currentTime = getEpochMill();
-            if(currentTime - movementPlaceholder->timeSinceLastMove > 100){
+            if(currentTime - movementPlaceholder->timeSinceLastMove > 90){
                 movementPlaceholder->y--;
                 movementPlaceholder->timeSinceLastMove = currentTime;
             }
@@ -156,6 +223,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 double yDelta = abs(currentMeteor->y - currentMissile->y);
                 double distance = sqrt(pow(xDelta, 2)+pow(yDelta, 2));
                 if((int)distance <= 5){
+                    playerObject->streak++;
                     playerObject->points = playerObject->points + currentMeteor->point;
                     missileUpdate = 1;
                     if(currentMeteor->prev == NULL && currentMeteor->next == NULL){
@@ -215,6 +283,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
             } else {
                 currentMissile = currentMissile->next;
             }
+
         }
     }
 DONE:

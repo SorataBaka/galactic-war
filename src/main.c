@@ -20,7 +20,7 @@ int main(){
 
     //Initialize player
     Bindings defaultBindings = {
-        'a', 'd', ' '
+        'a', 'd', ' ', 'x', 'c'
     };
     Position startingPosition = {maxWidth/2, maxHeight};
     Player player;

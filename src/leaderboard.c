@@ -60,9 +60,7 @@ void displayLeaderboard(int maxWidth, int maxHeight){
     mvaddstr(yCenter-2, xCenter-6, "LEADERBOARD");
     timeout(-1);
     for(int i = 0; i < index; i++){
-        char entryPrint[30];
-        sprintf(entryPrint, "%2d. %5d %s", i+1, leaderboard[i].score, leaderboard[i].username);
-        mvaddstr(yCenter+i, xCenter-10, entryPrint);
+        mvprintw(yCenter+i, xCenter-10, "%2d. %5d %s", i+1, leaderboard[i].score, leaderboard[i].username);
     }
     mvaddstr(yCenter+12, xCenter-14, "Press any key to continue.");
     getch();

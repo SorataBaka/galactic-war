@@ -18,6 +18,9 @@ void endScreen(int maxWidth, int maxHeight, Player * playerObject){
     nodelay(stdscr, FALSE);
 	echo();
     scanw("%19s", playerObject->username);
+    if(strlen(playerObject->username) == 0){
+        strcpy(playerObject->username, "NONAME");
+    }
     refresh();
     noecho();
     nodelay(stdscr, TRUE);

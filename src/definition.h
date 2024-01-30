@@ -6,14 +6,17 @@
 #define false 0
 
 #define MOVEMENT_STEP 3
-#define METEOR_SPAWN_TRESHOLD 920
-#define SCREEN_BOUND_MIN 3
-#define SCREEN_BOUND_MAX 3
+#define METEOR_SPAWN_TRESHOLD 900
+#define SCREEN_BOUND_MIN 0
+#define SCREEN_BOUND_MAX 6
+#define MAX_ACTIVE_MISSILE 12
 
 typedef struct {
     char left;
     char right;
     char shoot;
+    char bomb;
+    char laser;
 } Bindings;
 
 typedef struct {
@@ -46,6 +49,7 @@ typedef struct {
     Position currentPosition;
     struct Missile * missileArray;
     long int points;
+    int streak;
 } Player;
 
 
