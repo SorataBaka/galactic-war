@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宇宙戦争</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
+    <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -57,7 +64,7 @@
         <h2 class="text-4xl font-bold mb-5">インストール</h2>
         <span class="italic text-xl font-thin">ゲームのソースコードはGitHubでホストされています。</span>
         <span class="italic text-xl font-thin">このガイドは Linux 向けに書かれています。 Windowsの場合は、<a class="underline text-blue-200"
-                href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.0">ここ</a>からソースコードをダウンロードしてください。</span>
+                href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.1">ここ</a>からソースコードをダウンロードしてください。</span>
         <div class="flex flex-col gap-2">
             <h3 class="text-2xl font-bold">実行ファイルをインストールする</h3>
             <p class="text-xl">1. <a class="underline text-blue-200"
@@ -76,18 +83,18 @@
                 <p>> sudo apt-get install libncurses5-dev libncursesw5-dev</p>
             </div>
             <p class="text-xl">2. <a class="underline text-blue-200"
-                    href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.0.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。
+                    href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.1.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。
             </p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.0.tar.gz</p>
+                <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.1.tar.gz</p>
             </div>
             <p class="text-xl">3. tar ファイルからソースコードを抽出します。</p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> tar xvzf ./v1.0.0.tar.gz</p>
+                <p>> tar xvzf ./v1.0.1.tar.gz</p>
             </div>
             <p class="text-xl">4. ソースコードからコンパイルする</p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> cd ./galactic-war-1.0.0</p>
+                <p>> cd ./galactic-war-1.0.1</p>
                 <p>> make</p>
             </div>
             <p class="text-4xl">5. 実行可能ファイルを実行する。</p>
@@ -161,6 +168,15 @@
                     <li>レーザーと爆発というスキルが出来ている。</li>
                     <li>決定画面をつくった。</li>
                     <li>ソースコードをきれいにされた</li>
+                </ol>
+            </div>
+            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
+                <h5 class="text-3xl font-extrabold">v1.0.1</h5>
+                <span class="text-sm italic">2024/01/31</span>
+                <h6 class="text-xl font-bold">リリースノート</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.1">ソースコード</a>
+                <ol class="list-disc list-inside">
+                    <li>マイナーなバグ修正</li>
                 </ol>
             </div>
         </div>
