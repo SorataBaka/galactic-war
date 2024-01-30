@@ -57,7 +57,7 @@
         <h2 class="text-4xl font-bold mb-5">インストール</h2>
         <span class="italic text-xl font-thin">ゲームのソースコードはGitHubでホストされています。</span>
         <span class="italic text-xl font-thin">このガイドは Linux 向けに書かれています。 Windowsの場合は、<a class="underline text-blue-200"
-                href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.3">ここ</a>からソースコードをダウンロードしてください。</span>
+                href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.0">ここ</a>からソースコードをダウンロードしてください。</span>
         <div class="flex flex-col gap-2">
             <h3 class="text-2xl font-bold">実行ファイルをインストールする</h3>
             <p class="text-xl">1. <a class="underline text-blue-200"
@@ -76,18 +76,18 @@
                 <p>> sudo apt-get install libncurses5-dev libncursesw5-dev</p>
             </div>
             <p class="text-xl">2. <a class="underline text-blue-200"
-                    href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/v0.0.3.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。
+                    href="https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.0.tar.gz">ここ</a>から実行可能ファイルをダウンロードする。または、以下のようにダウンロードする。
             </p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/v0.0.3.tar.gz</p>
+                <p>> wget https://github.com/SorataBaka/galactic-war/archive/refs/tags/v1.0.0.tar.gz</p>
             </div>
             <p class="text-xl">3. tar ファイルからソースコードを抽出します。</p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> tar xvzf ./latest.tar.gz</p>
+                <p>> tar xvzf ./galactic-war-1.0.0.tar.gz</p>
             </div>
             <p class="text-xl">4. ソースコードからコンパイルする</p>
             <div class="bg-gray-500 rounded p-2 text-white font-mono bg-opacity-90">
-                <p>> cd ./galactic-war-latest</p>
+                <p>> cd ./galactic-war-1.0.0</p>
                 <p>> make</p>
             </div>
             <p class="text-4xl">5. 実行可能ファイルを実行する。</p>
@@ -99,6 +99,7 @@
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
         <h2 class="text-4xl font-bold mb-5">操作方法</h2>
+        
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
@@ -150,6 +151,18 @@
                     <li>流星のランダム的に発生パラメータを変更させた。</li>
                 </ol>
             </div>
+            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
+                <h5 class="text-3xl font-extrabold">v1.0.0</h5>
+                <span class="text-sm italic">2024/01/31</span>
+                <h6 class="text-xl font-bold">リリースノート</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.0">ソースコード</a>
+                <h6 class="text-lg font-bold">最初に完成したリリース</h6>
+                <ol class="list-disc list-inside">
+                    <li>レーザーと爆発というスキルが出来ている。</li>
+                    <li>決定画面をつくった。</li>
+                    <li>ソースコードをきれいにされた</li>
+                </ol>
+            </div>
         </div>
     </section>
     <hr class=" border-white">
@@ -164,15 +177,15 @@
             <li>✅ プレイヤーが失敗するときに、流星がさせられた損害というロジックを作る。</li>
             <li>✅ ゲームおしまい画面。</li>
             <li>✅ ホーム画面を作る。</li>
-            <li>❎ 決定を変更画面を作る。</li>
+            <li>✅ 決定を変更画面を作る。</li>
             <h3 class="text-xl font-bold">オプショナル</h3>
             <li>✅ リーダーボードをファイルから読んだり、ファイルに書いたりすることをできる。</li>
-            <li>❎ 爆発とか、レーザーとかをつくる。</li>
+            <li>✅ 爆発とか、レーザーとかをつくる。</li>
         </ol>
     </section>
     <hr class=" border-white">
     <footer class="flex flex-col align-middle justify-center text-center text-white text-md">
-        <span>クリスティアン　ハルジュノ<br>3年情報学科 2022</span>
+        <span>クリスティアン　ハルジュノ<br>3年情報学科 2024</span>
     </footer>
 </body>
 
