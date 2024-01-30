@@ -5,8 +5,6 @@
 #include <stdio.h>
 
 #include "definition.h"
-#include "game.h"
-#include "endscreen.h"
 #include "mainscreen.h"
 
 int main(){

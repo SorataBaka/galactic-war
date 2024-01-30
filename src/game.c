@@ -58,9 +58,9 @@ void game(Player * playerObject, Meteor * meteorArray) {
 	    charSprite(playerObject->currentPosition.x, playerObject->currentPosition.y);
 
         //Draw health and other informations
-        mvprintw(0, 0, "Health: %3d\nPoints: %ld\nMissiles: %d/12\nStreak: %3d", playerObject->health, playerObject->points, 12-missileLength, playerObject->streak);
-        mvprintw(maxHeight-2, maxWidth-30, "[%c] LASER : %s", playerObject->userBindings.laser,playerObject->streak >= 20 ? "READY": "NOT READY");
-        mvprintw(maxHeight-3, maxWidth-30, "[%c] BOMB  : %s", playerObject->userBindings.bomb ,playerObject->streak >=30 ? "READY" : "NOT READY");
+        mvprintw(0, 0, "Health: %3d\nPoints: %ld\nMissiles: %d/12\nStreak: %3d", playerObject->health, playerObject->points, 12 - missileLength, playerObject->streak);
+        mvprintw(maxHeight-2, maxWidth-25, "[%c] LASER : %s", playerObject->userBindings.laser,playerObject->streak >= 20 ? "READY": "NOT READY");
+        mvprintw(maxHeight-3, maxWidth-25, "[%c] BOMB  : %s", playerObject->userBindings.bomb ,playerObject->streak >=30 ? "READY" : "NOT READY");
 
         refresh();
 
@@ -69,12 +69,12 @@ void game(Player * playerObject, Meteor * meteorArray) {
         if(key == 'q') break;
         if(key == playerObject->userBindings.left && playerObject->currentPosition.x > 5) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
         if(key == playerObject->userBindings.right && playerObject->currentPosition.x < maxWidth-5) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
-        if(key == playerObject->userBindings.laser && laserActive == false && playerObject->streak >= 30){
+        if(key == playerObject->userBindings.laser && laserActive == false && playerObject->streak >= BOMB_STREAK_MIN){
             laserActive = true;
             playerObject->streak = 0;
             timeSinceLastLaser = getEpochMill();
         }
-        if(key == playerObject->userBindings.bomb && playerObject->streak >= 50){
+        if(key == playerObject->userBindings.bomb && playerObject->streak >= BOMB_STREAK_MIN){
             playerObject->streak = 0;        
             while(meteorArray != NULL){
                 playerObject->points = playerObject->points + meteorArray->point;
@@ -101,7 +101,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 playerObject->missileArray = newMissile;
             }
         }
-        if(getEpochMill() - timeSinceLastLaser >= 3000 && laserActive == true){
+        if(getEpochMill() - timeSinceLastLaser >= LASER_TIME_LEN && laserActive == true){
             timeSinceLastLaser = 0;
             laserActive = false;
         }
@@ -164,7 +164,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         Meteor * meteorMovementPlaceholder = meteorArray;
         while(meteorMovementPlaceholder != NULL){
             unsigned long long currentTime = getEpochMill();
-            if(currentTime - meteorMovementPlaceholder->timeSinceLastMove > 500){
+            if(currentTime - meteorMovementPlaceholder->timeSinceLastMove > METEOR_MOVEMENT_SPEED){
                 meteorMovementPlaceholder->y++;
                 meteorMovementPlaceholder->timeSinceLastMove = currentTime;
             }
@@ -192,7 +192,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         Missile * movementPlaceholder = playerObject->missileArray;
         while(movementPlaceholder != NULL){
             unsigned long long currentTime = getEpochMill();
-            if(currentTime - movementPlaceholder->timeSinceLastMove > 90){
+            if(currentTime - movementPlaceholder->timeSinceLastMove > MISSILE_MOVEMENT_SPEED){
                 movementPlaceholder->y--;
                 movementPlaceholder->timeSinceLastMove = currentTime;
             }
@@ -222,7 +222,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
                 double xDelta = abs(currentMeteor->x - currentMissile->x);
                 double yDelta = abs(currentMeteor->y - currentMissile->y);
                 double distance = sqrt(pow(xDelta, 2)+pow(yDelta, 2));
-                if((int)distance <= 5){
+                if((int)distance <= COLLISION_BOUNDARY){
                     playerObject->streak++;
                     playerObject->points = playerObject->points + currentMeteor->point;
                     missileUpdate = 1;
