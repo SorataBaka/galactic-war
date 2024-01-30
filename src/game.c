@@ -59,8 +59,8 @@ void game(Player * playerObject, Meteor * meteorArray) {
 
         //Draw health and other informations
         mvprintw(0, 0, "Health: %3d\nPoints: %ld\nMissiles: %d/12\nStreak: %3d", playerObject->health, playerObject->points, 12 - missileLength, playerObject->streak);
-        mvprintw(maxHeight-2, maxWidth-25, "[%c] LASER : %s", playerObject->userBindings.laser,playerObject->streak >= 20 ? "READY": "NOT READY");
-        mvprintw(maxHeight-3, maxWidth-25, "[%c] BOMB  : %s", playerObject->userBindings.bomb ,playerObject->streak >=30 ? "READY" : "NOT READY");
+        mvprintw(maxHeight-2, maxWidth-25, "[%c] LASER : %s", playerObject->userBindings.laser,playerObject->streak >= LASER_STREAK_MIN ? "READY": "NOT READY");
+        mvprintw(maxHeight-3, maxWidth-25, "[%c] BOMB  : %s", playerObject->userBindings.bomb ,playerObject->streak >= BOMB_STREAK_MIN ? "READY" : "NOT READY");
 
         refresh();
 
@@ -69,7 +69,7 @@ void game(Player * playerObject, Meteor * meteorArray) {
         if(key == 'q') break;
         if(key == playerObject->userBindings.left && playerObject->currentPosition.x > 5) playerObject->currentPosition.x = playerObject->currentPosition.x - MOVEMENT_STEP;
         if(key == playerObject->userBindings.right && playerObject->currentPosition.x < maxWidth-5) playerObject->currentPosition.x = playerObject->currentPosition.x + MOVEMENT_STEP;
-        if(key == playerObject->userBindings.laser && laserActive == false && playerObject->streak >= BOMB_STREAK_MIN){
+        if(key == playerObject->userBindings.laser && laserActive == false && playerObject->streak >= LASER_STREAK_MIN){
             laserActive = true;
             playerObject->streak = 0;
             timeSinceLastLaser = getEpochMill();
