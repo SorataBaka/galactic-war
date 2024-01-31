@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,32 +12,14 @@
     <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* ===== Scrollbar CSS ===== */
-        /* ===== Scrollbar CSS ===== */
-        /* Firefox */
-        * {
-            scrollbar-width: none;
-            scrollbar-color: #8f54a0 #ffffff;
-        }
-
-        /* Chrome, Edge, and Safari */
-        *::-webkit-scrollbar {
-            width: 13px;
-        }
-
-        *::-webkit-scrollbar-track {
-            background: linear-gradient(180deg, #93c5fd, #fca5a5);
-        }
-
-        *::-webkit-scrollbar-thumb {
-            background-color: #8f54a0;
-            border-radius: 10px;
-            border: 0px none #ffffff;
-        }
-    </style>
+    <meta name="title" content="宇宙戦争">
+    <meta name="description" content="宇宙である戦艦は地球を、敵が投げた流星から防ぐというゲームである。このゲームはオリジナルとは言えないと思いますが、アタリ株式会社のスペースインベーダーとアタリ株式会社のブレイクアウトというゲームの合同を作ります。このゲームでは、プレイヤーが戦艦をコントロールして、上野方面から戦艦向きに流星というオブジェクトが飛びます。地球を防ぐために、その流星を崩しなければいけない、というゲームである。">
+    <meta name="keywords" content="Space, war, c language, mini game, ncurses, kosen, kushiro kosen, programming">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="Japanese">
+    <meta name="author" content="Christian Harjuno">
+    <link rel="stylesheet" href="./output.css">
 </head>
 
 <body class="p-10 min-h-screen flex flex-col align-middle gap-12 bg-gradient-to-b from-black to-purple-900 text-white">
@@ -54,9 +35,16 @@
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-4xl font-bold mb-5">スクリーンショット</h2>
-        <div class="">
-            <img src="./assets/SPACEWAR.png" alt="Game screenshot" class="w-1/2 mx-auto">
+        <h2 class="text-4xl font-bold mb-10">スクリーンショット</h2>
+        <div class="grid grid-cols-2 gap-5">
+            <img src="./assets/1.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/2.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/3.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/4.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/5.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/6.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/7.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
+            <img src="./assets/8.png" alt="Game screenshot" class="w-auto rounded-3xl mx-auto shadow-xl shadow-slate-800">
         </div>
     </section>
     <hr class=" border-white">
@@ -105,36 +93,76 @@
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-4xl font-bold mb-5">操作方法</h2>
-
+        <h2 class="text-4xl font-bold mb-10">操作方法</h2>
+        <table class="table border text-2xl text-left">
+            <thead class="table-header-group text-center bg-gray-800">
+                <tr >
+                    <th class="border p-2 tg-hafo">キー</th>
+                    <th class="border p-2 tg-8xib">説明</th>
+                </tr>
+            </thead>
+            <tbody class="table-row-group">
+                <tr class="table-row">
+                    <td class="border p-2 table-cell">[A]</td>
+                    <td class="border p-2 tg-0lax">船を左に移動</td>
+                </tr>
+                <tr class="table-row">
+                    <td class="border p-2 tg-baqh">[D]</td>
+                    <td class="border p-2 tg-0lax">船を右に移動</td>
+                </tr>
+                <tr class="table-row">
+                    <td class="border p-2 tg-baqh">[Space]</td>
+                    <td class="border p-2 tg-0lax">ミサイルを1発発射する</td>
+                </tr>
+                <tr class="table-row">
+                    <td class="border p-2 tg-baqh">[X]</td>
+                    <td class="border p-2 tg-0lax">爆弾を爆発させる</td>
+                </tr>
+                <tr class="table-row">
+                    <td class="border p-2 tg-baqh">[C]</td>
+                    <td class="border p-2 tg-0lax">広範囲にわたるレーザーを発射する</td>
+                </tr>
+            </tbody>
+        </table>
+        <span class="italic text-2xl text-white font-light mt-5">全キーが変更可能</span>
     </section>
     <hr class=" border-white">
     <section class="h-auto flex flex-col align-middle justify-center">
-        <h2 class="text-4xl font-bold mb-5">開発履歴</h2>
-        <div class="grid grid-cols-4 mx-auto my-auto">
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
-                <h5 class="text-3xl font-extrabold">v0.0.1</h5>
-                <span class="text-sm italic">2024/01/22</span>
+        <h2 class="text-4xl font-bold mb-10">開発履歴</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mx-auto my-auto ">
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
+                <h5 class="text-3xl font-extrabold">v1.0.1</h5>
+                <span class="text-sm italic">2024/01/31</span>
                 <h6 class="text-xl font-bold">リリースノート</h6>
-                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.1">ソースコード</a>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.1">ソースコード</a>
                 <ol class="list-disc list-inside">
-                    <li>最初に動作するプロトタイプ</li>
-                    <li>戦艦移動できる</li>
-                    <li>戦艦がミサイルを発生できる</li>
-                    <li>戦艦がAとDキーで左右の移動ができる</li>
+                    <li>マイナーなバグ修正</li>
                 </ol>
             </div>
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
-                <h5 class="text-3xl font-extrabold">v0.0.2</h5>
-                <span class="text-sm italic">2024/01/23</span>
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
+                <h5 class="text-3xl font-extrabold">v1.0.0</h5>
+                <span class="text-sm italic">2024/01/31</span>
                 <h6 class="text-xl font-bold">リリースノート</h6>
-                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.2">ソースコード</a>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.0">ソースコード</a>
+                <h6 class="text-lg font-bold">最初に完成したリリース</h6>
                 <ol class="list-disc list-inside">
-                    <li>Epoch時間に基づいて、ミサイルと流星の移動を管理する。</li>
-                    <li>ソースコードをきれいにされた。</li>
+                    <li>レーザーと爆発というスキルが出来ている。</li>
+                    <li>決定画面をつくった。</li>
+                    <li>ソースコードをきれいにされた</li>
                 </ol>
             </div>
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
+                <h5 class="text-3xl font-extrabold">v0.0.4</h5>
+                <span class="text-sm italic">2024/01/29</span>
+                <h6 class="text-xl font-bold">リリースノート</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.4">ソースコード</a>
+                <ol class="list-disc list-inside">
+                    <li>リーダーボードを表示できる。</li>
+                    <li>ゲームが終わったら、名前を入力出来て、リーダーボードに印刷する。</li>
+                    <li>流星のランダム的に発生パラメータを変更させた。</li>
+                </ol>
+            </div>
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
                 <h5 class="text-3xl font-extrabold">v0.0.3</h5>
                 <span class="text-sm italic">2024/01/29</span>
                 <h6 class="text-xl font-bold">リリースノート</h6>
@@ -147,36 +175,26 @@
                     <li>流星とミサイルがぶつけた時に、ゲームがエラーの問題が直しました。</li>
                 </ol>
             </div>
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
-                <h5 class="text-3xl font-extrabold">v0.0.4</h5>
-                <span class="text-sm italic">2024/01/29</span>
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
+                <h5 class="text-3xl font-extrabold">v0.0.2</h5>
+                <span class="text-sm italic">2024/01/23</span>
                 <h6 class="text-xl font-bold">リリースノート</h6>
-                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.4">ソースコード</a>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.2">ソースコード</a>
                 <ol class="list-disc list-inside">
-                    <li>リーダーボードを表示できる。</li>
-                    <li>ゲームが終わったら、名前を入力出来て、リーダーボードに印刷する。</li>
-                    <li>流星のランダム的に発生パラメータを変更させた。</li>
+                    <li>Epoch時間に基づいて、ミサイルと流星の移動を管理する。</li>
+                    <li>ソースコードをきれいにされた。</li>
                 </ol>
             </div>
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
-                <h5 class="text-3xl font-extrabold">v1.0.0</h5>
-                <span class="text-sm italic">2024/01/31</span>
+            <div class="flex flex-col align-middle justify-start  p-5 rounded-xl bg-gray-700 gap-2 hover:cursor-pointer hover:scale-[1.005] hover:bg-gray-600 hover:shadow-2xl shadow-white transition-all duration-300">
+                <h5 class="text-3xl font-extrabold">v0.0.1</h5>
+                <span class="text-sm italic">2024/01/22</span>
                 <h6 class="text-xl font-bold">リリースノート</h6>
-                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.0">ソースコード</a>
-                <h6 class="text-lg font-bold">最初に完成したリリース</h6>
+                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v0.0.1">ソースコード</a>
                 <ol class="list-disc list-inside">
-                    <li>レーザーと爆発というスキルが出来ている。</li>
-                    <li>決定画面をつくった。</li>
-                    <li>ソースコードをきれいにされた</li>
-                </ol>
-            </div>
-            <div class="flex flex-col align-middle justify-start m-2 p-5 rounded-xl bg-gray-700 gap-2">
-                <h5 class="text-3xl font-extrabold">v1.0.1</h5>
-                <span class="text-sm italic">2024/01/31</span>
-                <h6 class="text-xl font-bold">リリースノート</h6>
-                <a class="text-blue-200 underline italic" href="https://github.com/SorataBaka/galactic-war/releases/tag/v1.0.1">ソースコード</a>
-                <ol class="list-disc list-inside">
-                    <li>マイナーなバグ修正</li>
+                    <li>最初に動作するプロトタイプ</li>
+                    <li>戦艦移動できる</li>
+                    <li>戦艦がミサイルを発生できる</li>
+                    <li>戦艦がAとDキーで左右の移動ができる</li>
                 </ol>
             </div>
         </div>
